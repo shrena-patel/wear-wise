@@ -1,28 +1,9 @@
-// import React from 'react';
-// import { StatusBar } from 'expo-status-bar';
-// import { StyleSheet, Text, View } from 'react-native';
-
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Wear Wise</Text>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
-
 import React from 'react'
 import { StyleSheet, View, Text, Button, TouchableOpacity } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 import Home from './Home'
+import LoginScreen from './LoginScreen'
 
 const styles = StyleSheet.create({
   container: {
@@ -42,28 +23,60 @@ const styles = StyleSheet.create({
   flexContainer: {
     flex: 1,
     justifyContent: 'center',
-   
+  },
+  navigation: {
+    backgroundColor: 'blue'
   }
 })
 
-const App: React.FC = () => {
+const Stack = createStackNavigator()
+
+const App = () => {
   const handlePress = () => {
     console.log('button pressed!')
   }
 
   return (
     <View style={styles.container}>
-      <Home />
-      {/* <View style={styles.flexContainer}> */}
-        {/* <TouchableOpacity style={styles.button} onPress={handlePress}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handlePress}>
-          <Text style={styles.buttonText}>Logout</Text>
-        </TouchableOpacity> */}
-      {/* </View> */}
+      <NavigationContainer >
+        <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </View>
   )
 }
 
 export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// This was in App.js
+// import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+// import { StatusBar } from 'expo-status-bar';
+// import { StyleSheet, Text, View } from 'react-native';
+// export default function App() {
+//     return (_jsxs(View, { style: styles.container, children: [_jsx(Text, { children: "Open up App.js to start working on your app!" }), _jsx(StatusBar, { style: "auto" })] }));
+// }
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         backgroundColor: '#fff',
+//         alignItems: 'center',
+//         justifyContent: 'center',
+//     },
+// });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
 
 const styles = StyleSheet.create({
   homeContainer: {
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 50,
     backgroundColor: '#B7B7A4',
-    color: '#fff',
     paddingTop: 16,
     paddingBottom: 16,
     paddingLeft: 40,
@@ -31,14 +30,26 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   buttonText: {
-    color: 'white',
+    color: '#FFE8D6',
     textAlign: 'center',
-    
   },
+  signUpButtonText: {
+    color: '#FFE8D6',
+    textAlign: 'center',
+  },
+  signUpButton: {
+    backgroundColor: '#CB997E',
+    marginTop: 50,
+    paddingTop: 16,
+    paddingBottom: 16,
+    paddingLeft: 40,
+    paddingRight: 40,
+    borderRadius: 5
+  }
 });
 
-const Home = () => {
-
+const Home = (props: any) => {
+  console.log(props,'porps')
   const handlePress = () => {
     console.log('button pressed!')
   }
@@ -46,12 +57,14 @@ const Home = () => {
     <View style={styles.homeContainer}>
       <Text style={styles.title}>Wear Wise</Text>
       <Text style={styles.subtitle}>Your personal wardrobe tracker</Text>
-      <TouchableOpacity style={styles.button} onPress={handlePress}>
+      <Pressable style={styles.button} onPress={() => {
+        props.navigation.navigate('Login')
+      }}>
           <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handlePress}>
-          <Text style={styles.buttonText}>Logout</Text>
-        </TouchableOpacity>
+        </Pressable>
+        <Pressable style={styles.signUpButton} onPress={handlePress}>
+          <Text style={styles.signUpButtonText}>Sign up</Text>
+        </Pressable>
     </View>
   );
 };

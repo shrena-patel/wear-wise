@@ -1,5 +1,6 @@
-import React from 'react';
-import { StyleSheet, View, Text, Pressable } from 'react-native';
+import React from 'react'
+import { StyleSheet, View, Text, Pressable } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 const styles = StyleSheet.create({
   homeContainer: {
@@ -7,6 +8,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#6B705C',
     alignItems: 'center',
     justifyContent: 'center',
+    fontFamily: "Montserrat_500Medium",
+    fontSize: 50,
   },
   title: {
     fontSize: 24,
@@ -14,7 +17,7 @@ const styles = StyleSheet.create({
     color: '#FFE8D6',
     textTransform: 'uppercase',
     marginBottom: 16,
-    marginTop: '50%'
+    marginTop: '20%',
   },
   subtitle: {
     fontSize: 16,
@@ -27,7 +30,7 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     paddingLeft: 40,
     paddingRight: 40,
-    borderRadius: 5
+    borderRadius: 5,
   },
   buttonText: {
     color: '#FFE8D6',
@@ -44,29 +47,40 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     paddingLeft: 40,
     paddingRight: 40,
-    borderRadius: 5
-  }
-});
+    borderRadius: 5,
+  },
+})
 
 const Home = (props: any) => {
-  console.log(props,'porps')
+  console.log(props, 'porps')
   const handlePress = () => {
     console.log('button pressed!')
   }
   return (
     <View style={styles.homeContainer}>
+      <Icon.Button
+        name="shopping-bag"
+        backgroundColor="#6B705C"
+        color="#B7B7A4"
+        size={120}
+      >
+  
+      </Icon.Button>
       <Text style={styles.title}>Wear Wise</Text>
       <Text style={styles.subtitle}>Your personal wardrobe tracker</Text>
-      <Pressable style={styles.button} onPress={() => {
-        props.navigation.navigate('Login')
-      }}>
-          <Text style={styles.buttonText}>Login</Text>
-        </Pressable>
-        <Pressable style={styles.signUpButton} onPress={handlePress}>
-          <Text style={styles.signUpButtonText}>Sign up</Text>
-        </Pressable>
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          props.navigation.navigate('Login')
+        }}
+      >
+        <Text style={styles.buttonText}>Login</Text>
+      </Pressable>
+      <Pressable style={styles.signUpButton} onPress={handlePress}>
+        <Text style={styles.signUpButtonText}>Sign up</Text>
+      </Pressable>
     </View>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

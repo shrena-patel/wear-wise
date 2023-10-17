@@ -48,6 +48,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     backgroundColor: '#FFE8D6',
+    fontFamily: "Montserrat_500Medium",
+    fontSize: 50,
   },
   label: {
     fontSize: 16,

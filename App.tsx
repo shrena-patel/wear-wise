@@ -57,6 +57,16 @@ const App = () => {
     Montserrat_500Medium,
   });
 
+  const screenOptions = {
+    headerStyle: {
+      backgroundColor: "#B7B7A4",
+    },
+    headerTintColor: '#FFE8D6',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
+
   if (!fontsLoaded) {
     return null;
   }
@@ -67,11 +77,11 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <NavigationContainer >
+      <NavigationContainer>
         <GlobalStyles>
-        <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Navigator initialRouteName='WEAR WISE'>
+        <Stack.Screen name="Home" component={Home} options={screenOptions} />
+        <Stack.Screen name="Login" component={LoginScreen} options={screenOptions} />
         </Stack.Navigator>
         </GlobalStyles>
       </NavigationContainer>

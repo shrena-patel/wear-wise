@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginTop: '20%',
     fontFamily: 'Montserrat_400Regular',
-    
   },
   subtitle: {
     fontSize: 16,
@@ -34,6 +33,12 @@ const styles = StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
     borderRadius: 5,
+    textTransform: 'uppercase',
+    shadowColor: '#000',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    // elevation: pressed ? 0 : 5,
   },
   buttonText: {
     color: '#FFE8D6',
@@ -53,6 +58,7 @@ const styles = StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
     borderRadius: 5,
+    textTransform: 'uppercase',
   },
 })
 
@@ -67,9 +73,14 @@ const Home = (props: any) => {
         backgroundColor="#6B705C"
         color="#B7B7A4"
         size={120}
-      >
-  
-      </Icon.Button>
+        style={{
+          shadowColor: 'pink',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
+        }}
+      ></Icon.Button>
       <Text style={styles.title}>Wear Wise</Text>
       <Text style={styles.subtitle}>Your personal wardrobe tracker</Text>
       <Pressable

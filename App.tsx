@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Home from './Home'
 import LoginScreen from './LoginScreen'
-
+import GlobalStyles from './GlobalStyles'
 import {
   useFonts,
   Montserrat_100Thin,
@@ -13,11 +13,12 @@ import {
   Montserrat_500Medium,
 } from '@expo-google-fonts/montserrat'
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#B7B7A4',
-    fontFamily: "Montserrat_500Medium",
+    fontFamily: "Montserrat_400Regular",
     fontSize: 50,
   },
   button: {
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: 'white',
     textAlign: 'center',
-    fontFamily: "Montserrat_500Medium",
+    fontFamily: "Montserrat_300Light",
   },
   flexContainer: {
     flex: 1,
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue'
   },
   text: {
-    fontFamily: 'Montserrat_500Medium',
+    fontFamily: 'Montserrat_300Light',
 
   }
 })
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
 const Stack = createStackNavigator()
 
 const App = () => {
+
   const [fontsLoaded] = useFonts({
     Montserrat_100Thin,
     Montserrat_200ExtraLight,
@@ -66,10 +68,12 @@ const App = () => {
   return (
     <View style={styles.container}>
       <NavigationContainer >
+        <GlobalStyles>
         <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={LoginScreen} />
         </Stack.Navigator>
+        </GlobalStyles>
       </NavigationContainer>
     </View>
   )

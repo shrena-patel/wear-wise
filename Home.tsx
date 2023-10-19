@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#6B705C',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: "Montserrat_500Medium",
+    fontFamily: 'Montserrat_400Regular',
     fontSize: 50,
   },
   title: {
@@ -18,10 +18,13 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     marginBottom: 16,
     marginTop: '20%',
+    fontFamily: 'Montserrat_400Regular',
+    
   },
   subtitle: {
     fontSize: 16,
     color: '#ccc',
+    fontFamily: 'Montserrat_400Regular',
   },
   button: {
     marginTop: 50,
@@ -35,10 +38,12 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#FFE8D6',
     textAlign: 'center',
+    fontFamily: 'Montserrat_400Regular',
   },
   signUpButtonText: {
     color: '#FFE8D6',
     textAlign: 'center',
+    fontFamily: 'Montserrat_400Regular',
   },
   signUpButton: {
     backgroundColor: '#CB997E',
@@ -52,7 +57,6 @@ const styles = StyleSheet.create({
 })
 
 const Home = (props: any) => {
-  console.log(props, 'porps')
   const handlePress = () => {
     console.log('button pressed!')
   }

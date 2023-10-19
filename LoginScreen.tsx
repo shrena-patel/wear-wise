@@ -48,13 +48,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     backgroundColor: '#FFE8D6',
-    fontFamily: "Montserrat_500Medium",
+    fontFamily: "Montserrat",
     fontSize: 50,
   },
   label: {
     fontSize: 16,
     marginBottom: 5,
-    color: '#6B705C'
+    color: '#6B705C',
+    fontFamily: 'Montserrat_400Regular',
   },
   input: {
     height: 40,
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderRadius: 5,
     color: '#6B705C',
+    fontFamily: 'Montserrat_400Regular',
   },
   button: {
     backgroundColor: '#6B705C',
@@ -73,7 +75,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#FFE8D6',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Montserrat_400Regular',
   }
 });
 

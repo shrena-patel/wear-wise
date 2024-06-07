@@ -5,6 +5,7 @@ import {
   SignInButton,
   UserButton,
 } from '@clerk/clerk-react'
+import Home from './Home'
 
 function App() {
   // const { data } = useFruits()
@@ -23,6 +24,7 @@ function App() {
           </SignedIn>
         </header>
       </div>
+      <Home/>
     </>
   )
 }

@@ -1,17 +1,33 @@
-import { useUser } from "@clerk/clerk-react"
+import { useUser } from '@clerk/clerk-react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { UserData } from '../../models/users'
+import { addUser } from '../apis/users'
 
 export default function Home() {
   const { isSignedIn, user, isLoaded } = useUser()
 
+  const queryClient = useQueryClient()
+
+  const addUserMutation = useMutation({
+    mutationFn: (userToAdd: UserData) => addUser(userToAdd),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: 'users' }),
+    // this error might be because I haven't set up a normal use of useQuery
+  })
+
   if (!isLoaded) {
     return null
   }
-  console.log(user)
+
   if (isSignedIn) {
-    // Eventually return the items component, to display the user's items
-    return (
-      <p>Hello {user.username}! Here are your items:</p>
-    )
+    // Eventually return the items component, to display the user's items const userToAdd: UserData = {
+      addUserMutation.mutate({
+        clerk_id: user.id,
+        name: user.username,
+        phone: user.phoneNumbers[0].phoneNumber,
+        email: user.emailAddresses[0].emailAddress,
+        profile_image: user.imageUrl,
+      })
+    return <p>Hello {user.username}! Here are your items:</p>
   }
   // user.emailAddresses[0].emailAddress is the email
   return (

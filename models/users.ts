@@ -4,7 +4,7 @@ export interface User extends UserData {
 
 export interface UserData {
   clerk_id: string
-  name: string
+  name: string | null
   email: string
   phone: string
   profile_image: string

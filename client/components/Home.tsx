@@ -2,6 +2,7 @@ import { useUser } from '@clerk/clerk-react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { UserData } from '../../models/users'
 import { addUser } from '../apis/users'
+import { useEffect } from 'react'
 
 export default function Home() {
   const { isSignedIn, user, isLoaded } = useUser()
@@ -10,23 +11,26 @@ export default function Home() {
 
   const addUserMutation = useMutation({
     mutationFn: (userToAdd: UserData) => addUser(userToAdd),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: 'users' }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] }),
     // this error might be because I haven't set up a normal use of useQuery
   })
 
+  useEffect(() => {
+    console.log(user, 'user in useEffect')
+    user && addUserMutation.mutate({
+      clerk_id: user.id,
+      name: user.username,
+      phone: user.phoneNumbers[0].phoneNumber,
+      email: user.emailAddresses[0].emailAddress,
+      profile_image: user.imageUrl,
+    })
+  }, [user])
+  
   if (!isLoaded) {
     return null
   }
 
   if (isSignedIn) {
-    // Eventually return the items component, to display the user's items const userToAdd: UserData = {
-      addUserMutation.mutate({
-        clerk_id: user.id,
-        name: user.username,
-        phone: user.phoneNumbers[0].phoneNumber,
-        email: user.emailAddresses[0].emailAddress,
-        profile_image: user.imageUrl,
-      })
     return <p>Hello {user.username}! Here are your items:</p>
   }
   // user.emailAddresses[0].emailAddress is the email

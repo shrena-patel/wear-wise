@@ -12,7 +12,6 @@ export default function Home() {
   const addUserMutation = useMutation({
     mutationFn: (userToAdd: UserData) => addUser(userToAdd),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] }),
-    // this error might be because I haven't set up a normal use of useQuery
   })
 
   useEffect(() => {

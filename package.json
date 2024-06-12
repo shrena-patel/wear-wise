@@ -27,10 +27,12 @@
     ]
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.2.3",
     "express": "^4.17.2",
     "knex": "^2.5.1",
     "sqlite3": "^5.1.6",
-    "superagent": "^8.1.2"
+    "superagent": "^8.1.2",
+    "svix": "^1.24.0"
   },
   "devDependencies": {
     "@devacademy/eslint-config": "^1.9.1",

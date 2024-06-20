@@ -17,7 +17,6 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const newUser = req.body
-    console.log(newUser, 'user in server routes')
     await db.addUser(newUser)
     res.json("User added")
   } catch (error) {

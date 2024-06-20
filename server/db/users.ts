@@ -6,6 +6,5 @@ export async function getAllUsers(db = connection): Promise<User[]> {
 }
 
 export async function addUser(user: UserData, db = connection) {
-  console.log(user, 'user in db')
   return db('users').insert(user)
 }

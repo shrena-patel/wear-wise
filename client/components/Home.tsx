@@ -9,21 +9,21 @@ export default function Home() {
 
   const queryClient = useQueryClient()
 
-  const addUserMutation = useMutation({
-    mutationFn: (userToAdd: UserData) => addUser(userToAdd),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] }),
-  })
+  // const addUserMutation = useMutation({
+  //   mutationFn: (userToAdd: UserData) => addUser(userToAdd),
+  //   onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] }),
+  // })
 
-  useEffect(() => {
-    console.log(user, 'user in useEffect')
-    user && addUserMutation.mutate({
-      clerk_id: user.id,
-      name: user.username,
-      phone: user.phoneNumbers[0].phoneNumber,
-      email: user.emailAddresses[0].emailAddress,
-      profile_image: user.imageUrl,
-    })
-  }, [user])
+  // useEffect(() => {
+  //   console.log(user, 'user in useEffect')
+  //   user && addUserMutation.mutate({
+  //     clerk_id: user.id,
+  //     name: user.username,
+  //     phone: user.phoneNumbers[0].phoneNumber,
+  //     email: user.emailAddresses[0].emailAddress,
+  //     profile_image: user.imageUrl,
+  //   })
+  // }, [user])
   
   if (!isLoaded) {
     return null

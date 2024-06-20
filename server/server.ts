@@ -3,18 +3,20 @@ import * as Path from 'node:path'
 
 import fruitRoutes from './routes/fruits.ts'
 import userRoutes from './routes/users.ts'
+import * as db from './db/users.ts'
 // import webhookRoutes from './routes/webhooks.ts'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import { Webhook } from 'svix'
 import bodyParser from 'body-parser'
 
-// import webhookMiddleware from './db/webhookMiddleware.ts'
+
 dotenv.config()
 const server = express()
 
 server.post(
   '/api/webhook',
+  // middleware for parsing the request body as raw JSON data
   bodyParser.raw({ type: 'application/json' }),
 
   async function (req, res) {
@@ -34,14 +36,22 @@ server.post(
 
       if (eventType === 'user.created') {
         console.log(`User ${id} was ${eventType}`)
-        console.log(attributes)
+        console.log(attributes, 'these are the attributes')
         // send details to the db by calling db.addUser
       }
 
       if (eventType === 'user.updated') {
         console.log(`User ${id} was ${eventType}`)
         console.log(attributes)
-        // send details to the db by calling db.updateUser
+        const newUser = {
+          name: attributes.username,
+          clerk_id: id,
+          email: attributes.email_addressess[0].email_address,
+          phone: attributes.phone_numbers[0].phone_number,
+          profile_image: attributes.image.url
+        }
+        await db.addUser(newUser)
+        res.json(newUser + 'added')
       }
 
       if (eventType === 'user.deleted') {

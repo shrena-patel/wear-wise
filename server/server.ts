@@ -2,15 +2,23 @@ import express from 'express'
 import * as Path from 'node:path'
 import fruitRoutes from './routes/fruits.ts'
 import userRoutes from './routes/users.ts'
+import itemRoutes from './routes/items.ts'
 import * as db from './db/users.ts'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import { Webhook } from 'svix'
 import bodyParser from 'body-parser'
 
-
+//https://dev.to/devlawrence/sync-clerk-users-to-your-database-using-webhooks-a-step-by-step-guide-263i 
 dotenv.config()
 const server = express()
+
+server.use(cors())
+server.use(express.json())
+
+server.use('/api/v1/fruits', fruitRoutes)
+server.use('/api/v1/users', userRoutes)
+server.use('/api/v1/items', itemRoutes)
 
 server.post(
   '/api/webhook',
@@ -33,7 +41,7 @@ server.post(
         const emailObj = attributes.email_addresses?.find((email) => {
           return email.id === attributes.primary_email_address_id
         })
-        console.log(emailObj, 'emailobject')
+
         const phoneObj = attributes.phone_numbers?.find((phone) => {
             return phone.id === attributes.primary_phone_number_id
         })
@@ -49,8 +57,23 @@ server.post(
       }
 
       if (eventType === 'user.updated') {
-        console.log(`User ${id} was ${eventType}`)
-        console.log(attributes)
+        const emailObj = attributes.email_addresses?.find((email) => {
+          return email.id === attributes.primary_email_address_id
+        })
+        console.log(emailObj, 'emailobject')
+        const phoneObj = attributes.phone_numbers?.find((phone) => {
+            return phone.id === attributes.primary_phone_number_id
+        })
+        
+        const newUser = {
+          name: attributes.username,
+          clerk_id: id,
+          email: emailObj.email_address,
+          phone: phoneObj.phone_number,
+          profile_image: attributes.image_url
+        }
+
+        await db.updateUser(id, newUser)
       }
 
       if (eventType === 'user.deleted') {
@@ -71,11 +94,12 @@ server.post(
   }
 )
 
-server.use(cors())
-server.use(express.json())
+// server.use(cors())
+// server.use(express.json())
 
-server.use('/api/v1/fruits', fruitRoutes)
-server.use('/api/v1/users', userRoutes)
+// server.use('/api/v1/fruits', fruitRoutes)
+// server.use('/api/v1/users', userRoutes)
+// server.use('/api/v1/items', itemRoutes)
 
 
 if (process.env.NODE_ENV === 'production') {

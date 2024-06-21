@@ -7,6 +7,6 @@ export async function seed(knex) {
   await knex('items').del()
 
   await knex('items').insert([
-    {id: 1, name: 'Yu Mei Brown Bag', image: 'test.jpg', days_worn: 8, cost_per_wear: 28.40, category_id: 4, user_id: 29}
+    {id: 1, name: 'Yu Mei Brown Bag', image: 'test.jpg', days_worn: 8, cost_per_wear: 28.40, category_id: 4, clerk_id: 'user_2iAjUJaAOFUrkWw0FmOjA1hPeTd'}
   ])
 }

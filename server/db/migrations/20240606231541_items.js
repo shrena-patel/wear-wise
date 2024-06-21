@@ -6,7 +6,7 @@ export async function up(knex) {
     table.integer('days_worn')
     table.float('cost_per_wear')
     table.integer('category_id')
-    table.integer('user_id')
+    table.string('clerk_id')
   })
 }
 

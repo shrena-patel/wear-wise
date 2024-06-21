@@ -15,3 +15,9 @@ export async function deleteUser(id: string, db = connection) {
     .where('clerk_id', id)
     .delete()
 }
+
+export async function updateUser(id: string, user: UserData, db = connection) {
+  return db('users')
+    .where('clerk_id', id)
+    .update(user)
+}

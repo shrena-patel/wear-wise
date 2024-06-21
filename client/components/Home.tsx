@@ -1,13 +1,19 @@
 import { useUser } from '@clerk/clerk-react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { UserData } from '../../models/users'
-import { addUser } from '../apis/users'
-import { useEffect } from 'react'
+// import { useQueryClient } from '@tanstack/react-query'
+
+import Items from './Items'
+import AddItem from './AddItem'
 
 export default function Home() {
   const { isSignedIn, user, isLoaded } = useUser()
-
-  const queryClient = useQueryClient()
+  const userDetails = {
+    clerk_id: user?.id,
+    name: user?.username,
+    phone: user?.phoneNumbers[0].phoneNumber,
+    email: user?.emailAddresses[0].emailAddress,
+    profile_image: user?.imageUrl,
+  }
+  // const queryClient = useQueryClient()
 
   // const addUserMutation = useMutation({
   //   mutationFn: (userToAdd: UserData) => addUser(userToAdd),
@@ -30,7 +36,13 @@ export default function Home() {
   }
 
   if (isSignedIn) {
-    return <p>Hello {user.username}! Here are your items:</p>
+    return (
+      <>
+      <p>Hello {user.username}! Here are your items:</p>
+      <Items user={userDetails}/>
+      <AddItem />
+      </>
+    )
   }
   // user.emailAddresses[0].emailAddress is the email
   return (

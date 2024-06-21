@@ -8,3 +8,10 @@ export async function getAllUsers(db = connection): Promise<User[]> {
 export async function addUser(user: UserData, db = connection) {
   return db('users').insert(user)
 }
+
+export async function deleteUser(id: string, db = connection) {
+  console.log(id, typeof id, 'id in database')
+  return db('users')
+    .where('clerk_id', id)
+    .delete()
+}

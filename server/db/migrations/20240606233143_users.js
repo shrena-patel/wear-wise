@@ -4,7 +4,6 @@ export async function up(knex) {
     table.string('clerk_id')
     table.string('name')
     table.string('email')
-    table.string('phone')
     table.string('profile_image')
   })
 }

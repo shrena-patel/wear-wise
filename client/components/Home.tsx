@@ -9,7 +9,7 @@ export default function Home() {
   const userDetails = {
     clerk_id: user?.id,
     name: user?.username,
-    phone: user?.phoneNumbers[0].phoneNumber,
+    // phone: user?.phoneNumbers[0].phoneNumber,
     email: user?.emailAddresses[0].emailAddress,
     profile_image: user?.imageUrl,
   }

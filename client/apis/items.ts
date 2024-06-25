@@ -1,9 +1,10 @@
 import request from 'superagent'
-import { Items } from '../../models/items'
+import { Item } from '../../models/items'
 
 const rootUrl = '/api/v1'
 
-export function getItemsByUser(id: string): Promise<Items[]> {
+export function getItemsByUser(id: string): Promise<Item[]> {
+  console.log(id, 'id;')
   return request.get(rootUrl + '/items/' + id).then(res => {
     return res.body
   })

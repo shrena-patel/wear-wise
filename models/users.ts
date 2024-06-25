@@ -3,10 +3,9 @@ export interface User extends UserData {
 }
 
 export interface UserData {
-  clerk_id: string
-  name: string
-  email: string
-  // phone: string
-  profile_image: string
+  clerk_id: string | undefined
+  name: string | null | undefined
+  email: string | undefined
+  profile_image: string | undefined
 }
 
